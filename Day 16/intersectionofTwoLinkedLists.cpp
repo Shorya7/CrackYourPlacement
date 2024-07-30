@@ -1,3 +1,5 @@
+//Solution 1
+
 class Solution {
 public:
 	ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
@@ -14,4 +16,45 @@ public:
 		}
 		return NULL;
 	}
+};
+//--------------------------------------------------------------------------------------------------------------------
+
+//Solution 2
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* solve(ListNode *s, ListNode *l,int k){
+        while(k--){
+            l=l->next;
+        }
+        while(s!=l){
+            if(!s||!l)return NULL;
+            s=s->next;
+            l=l->next;
+        }
+        return s;
+    }
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        int n1=0,n2=0;
+        ListNode* tA=headA;
+        ListNode* tB=headB;
+        while(tA){
+            n1++;
+            tA=tA->next;
+        }
+        while(tB){
+            n2++;
+            tB=tB->next;
+        }
+        if(n1>n2)return solve(headB,headA,n1-n2);
+        return solve(headA,headB,n2-n1);
+    }
 };
