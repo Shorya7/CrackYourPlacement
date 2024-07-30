@@ -58,3 +58,31 @@ public:
         return solve(headA,headB,n2-n1);
     }
 };
+
+//--------------------------------------------------------------------------------------------------------------------
+
+//Solution 3
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode* tA=headA;
+        ListNode* tB=headB;
+        while(tA!=tB){
+            tA=tA->next;
+            tB=tB->next;
+            if(tA==tB)return tA;
+            if(tA==NULL)tA=headB;
+            if(!tB)tB=headA;
+        }
+        return tA;
+    }
+};
