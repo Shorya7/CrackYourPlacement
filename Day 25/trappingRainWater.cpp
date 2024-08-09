@@ -5,7 +5,8 @@ public:
         while(i<j){
             if(l<=r){
             s+=(l-height[i]);i++;
-            l=max(l,height[i]);}
+            l=max(l,height[i]);
+            }
             else{
                 s+=(r-height[j]);
                 j--;r=max(r,height[j]);
