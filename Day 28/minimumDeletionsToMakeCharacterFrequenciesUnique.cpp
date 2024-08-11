@@ -1,3 +1,5 @@
+// SOLUTION 1 (Using SORTING)
+
 class Solution {
 public:
     int minDeletions(string s) {
@@ -24,6 +26,31 @@ public:
             i--;
         }
         
+        return ans;
+    }
+};
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+// SOLUTION 2 (Using SET)
+
+class Solution {
+public:
+    int minDeletions(string s) {
+        vector<int>v(26,0);
+        for(char c:s)v[c-'a']++;
+        int ans=0;
+        set<int>st;
+        for(int i:v){
+            int f=i;
+            if(f==0)continue;
+            while(st.count(f)&&f>0){
+                f--;
+                ans++;
+            }
+            if(f>0)st.insert(f);
+        }
         return ans;
     }
 };
